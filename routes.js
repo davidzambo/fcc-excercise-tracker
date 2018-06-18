@@ -18,14 +18,6 @@ const routes = [
         handler: ExcerciseController.index
     },
     {
-        method: 'GET',
-        path: '/{name}',
-        handler: (req, res) => {
-            // req.logger.info(`In handler ${req.path}`);
-            return `Hello ${encodeURIComponent(req.params.name)}`;
-        }
-    },
-    {
         method: 'POST',
         path: '/api/user',
         handler: UserController.create
@@ -33,9 +25,7 @@ const routes = [
     {
         method: 'POST',
         path: '/api/excercise',
-        handler: (req, res) => {
-            return req.body;
-        }
+        handler: ExcerciseController.create
     }
 
 ];

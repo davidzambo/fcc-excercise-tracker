@@ -2,24 +2,33 @@ extends templates/layout
 block content
     div.row
         div.col-12.col-md-4
-            h1 title #{title}
-            h4 Create a New User
-            form(
-                id="user"
-                method="post"
-                action="/api/user"
-                class="form-horizontal")
-                div.form-group
-                    code POST /api/user
+            div.card.border-primary
+                div.card-header
+                    h4 Create a New User
+                div.card-body
+                    form(method="post" action="/api/user" class="form-horizontal")
+                        div.form-group
+                            code POST /api/user
 
-                div.form-group
-                    input(
-                        name="username"
-                        type="text"
-                        placeholder="username"
-                        class="form-control"
-                        required)
-                div.form-group
-                    button(
-                        type="submit"
-                        class="btn btn-primary") submit
+                        div.form-group
+                            input(name="username" type="text" class="form-control" placeholder="username" required)
+                        div.form-group
+                            button(type="submit" class="btn btn-primary btn-block") submit
+        div.col-12.col-md-4
+            div.card.border-primary
+                div.card-header
+                    h5 Create a new excercise
+                div.card-body
+                    form(method="post" action="/api/excercise" class="form-horizontal")
+                        div.form-group
+                            code POST /api/excercise
+                        div.form-group
+                            input(name="user_id" type="text" class="form-control" placeholder="user id" required)
+                        div.form-group
+                            input(name="description" type="text" class="form-control" placeholder="description" required)
+                        div.form-group
+                            input(name="duration" type="number" class="form-control from-control-sm" placeholder="duration (minutes)" required)
+                        div.form-group
+                            input(name="date" type="date" class="form-control from-control-sm" placeholder="date (yyyy-mm-dd)" required)
+                        div.form-group
+                            button(type="submit" class="btn btn-primary btn-block") submit

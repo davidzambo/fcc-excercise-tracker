@@ -1,10 +1,27 @@
-const ExcerciseController = {
-    index: (req, res) => {
-        const data = {
-            title: 'Excercise tracker'
-        };
+const Excercise = require('../models/Excercise');
 
-        return res.view('index', data);
+const ExcerciseController = {
+    index: (request, h) => {
+        return h.view('index');
+    },
+
+    create: (request, h) => {
+        console.log(request.payload);
+        return Excercise.create(request.payload)
+            .then( excercise => {
+                return h
+                    .response({
+                        message: "Excercise created successfully!",
+                        excercise
+                    })
+                    .type('application/json')
+                    .code(201);
+            }).catch(err => {
+                return h
+                    .response({error: err})
+                    .type("application/json")
+                    .code(200);
+            })
     },
 };
 

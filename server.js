@@ -38,12 +38,14 @@ const start = async () => {
         await server.start();
 
         process.on("unhandledRejection", err => {
+            console.log('unhandled');
             console.log(err);
             process.exit(1);
         });
 
 
     } catch (err) {
+        console.log("start");
         console.log(err);
         process.exit(1);
     }
