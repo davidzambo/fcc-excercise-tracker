@@ -11,7 +11,7 @@ block content
                             code POST /api/user
 
                         div.form-group
-                            input(name="username" type="text" class="form-control" placeholder="username" required)
+                            input(name="username" type="text" class="form-control" placeholder="username" )
                         div.form-group
                             button(type="submit" class="btn btn-primary btn-block") submit
         div.col-12.col-md-4
@@ -19,16 +19,16 @@ block content
                 div.card-header
                     h5 Create a new excercise
                 div.card-body
-                    form(method="post" action="/api/excercise" class="form-horizontal")
+                    form(method="post" action="/api/exercise" class="form-horizontal")
                         div.form-group
-                            code POST /api/excercise
+                            code POST /api/exercise
                         div.form-group
-                            input(name="user_id" type="text" class="form-control" placeholder="user id" required)
+                            input(name="user_id" type="text" class="form-control" placeholder="user id" )
                         div.form-group
-                            input(name="description" type="text" class="form-control" placeholder="description" required)
+                            input(name="description" type="text" class="form-control" placeholder="description" )
                         div.form-group
-                            input(name="duration" type="number" class="form-control from-control-sm" placeholder="duration (minutes)" required)
+                            input(name="duration" type="number" class="form-control from-control-sm" placeholder="duration (minutes)" )
                         div.form-group
-                            input(name="date" type="date" class="form-control from-control-sm" placeholder="date (yyyy-mm-dd)" required)
+                            input(name="date" type="date" class="form-control from-control-sm" placeholder="date (yyyy-mm-dd)" )
                         div.form-group
                             button(type="submit" class="btn btn-primary btn-block") submit
