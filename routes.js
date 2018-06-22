@@ -1,5 +1,4 @@
 const Path = require("path");
-const Joi = require("joi");
 const UserController = require('./controllers/UserController');
 
 const routes = [
@@ -21,6 +20,11 @@ const routes = [
         method: 'POST',
         path: '/api/user',
         handler: UserController.create,
+    },
+    {
+      method: 'GET',
+      path: '/api/exercise/log',
+      handler: UserController.show
     },
     {
         method: 'POST',

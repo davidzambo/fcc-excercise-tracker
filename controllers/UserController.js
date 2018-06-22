@@ -78,6 +78,43 @@ const UserController = {
                     .type("application/json")
                     .code(200);
             })
+    },
+
+    show: (request, h) => {
+        if (!request.query.user_id){
+            return h.response({error: "User id is missing!"});
+        }
+
+        if (!ObjectId.isValid(request.query.user_id)){
+            return h.response({error: "Invalid user id!"});
+        }
+
+        const query = {
+            _id: new ObjectId(request.query.user_id),
+            from: request.query.from || '0000-01-01',
+            to: request.query.to || new Date().toISOString().slice(0,10),
+            limit: request.query.limit || ''
+        };
+        console.log(query);
+
+        return User.findById({_id: query._id})
+            .limit(query.limit)
+            .then(user => {
+                user.exercise = user.exercise.filter(ex => {
+                    return new Date(ex.date).getTime() > new Date(query.from).getTime()
+                        && new Date(ex.date).getTime() < new Date(query.to);
+                });
+                return h
+                    .response({
+                        username: user.username,
+                        count: user.exercise ? user.exercise.length : 0,
+                        exercises: (user.exercise && user.exercise.length) ? user.exercise : 'No items found!'
+                    })
+
+            }).catch(err => {
+                return h
+                    .response({error: err.message})
+            });
     }
 };
 
