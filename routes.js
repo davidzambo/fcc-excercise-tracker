@@ -23,7 +23,7 @@ const routes = [
         handler: UserController.create,
     },
     {
-        method: 'PUT',
+        method: 'POST',
         path: '/api/exercise',
         handler: UserController.update,
     }
