@@ -1,4 +1,26 @@
-h1 {
-  color: gold; }
+html,
+body,
+.container-fluid {
+  min-height: 100vh; }
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: white;
+  text-decoration: none; }
+
+footer {
+  background-color: black;
+  color: white;
+  margin: 0 -15px;
+  padding: 1rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.9rem; }
+  footer img {
+    height: 1.2rem;
+    width: auto;
+    vertical-align: top; }
 
 /*# sourceMappingURL=styles.css.map */

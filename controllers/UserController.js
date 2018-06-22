@@ -95,7 +95,6 @@ const UserController = {
             to: request.query.to || new Date().toISOString().slice(0,10),
             limit: request.query.limit || ''
         };
-        console.log(query);
 
         return User.findById({_id: query._id})
             .limit(query.limit)
