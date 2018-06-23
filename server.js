@@ -9,34 +9,18 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 const server = Hapi.server({
     host: "localhost",
     port: process.env.PORT || 3030,
-    routes: {
-        validate: {
-            failAction: async (request, h, err) => {
-                h.response('hupsz');
-                if (process.env.NODE_ENV === 'production') {
-                    // In prod, log a limited error message and throw the default Bad Request error.
-                    console.error('ValidationError:', err.message); // Better to use an actual logger here.
-                    throw Boom.badRequest(`Invalid request payload input`);
-                } else {
-                    // During development, log and respond with the full error.
-                    console.error(err);
-                    return r.response({msg: err.output.payload.validation.source});
-                }
-            }
-        }
-    }
 });
 
 const start = async () => {
     try {
         await server.register([Inert, Vision]);
-        // await server.register({
-        //     plugin: require("hapi-pino"),
-        //     options: {
-        //         prettyPrint: true,
-        //         logEvents: ["response"]
-        //     }
-        // });
+        await server.register({
+            plugin: HapiPino,
+            options: {
+                prettyPrint: true,
+                logEvents: ["request","response"]
+            }
+        });
 
         // Apply routes
         server.route(Routes);
@@ -54,14 +38,12 @@ const start = async () => {
         await server.start();
 
         process.on("unhandledRejection", err => {
-            console.log('unhandled');
             console.log(err);
             process.exit(1);
         });
 
 
     } catch (err) {
-        console.log("start");
         console.log(err);
         process.exit(1);
     }
