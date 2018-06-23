@@ -7,8 +7,8 @@ const HapiPino = require("hapi-pino");
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const server = Hapi.server({
-    host: "localhost",
-    port: process.env.PORT,
+    host: process.env.HOST || "localhost",
+    port: process.env.PORT || "4000",
 });
 
 const start = async () => {
