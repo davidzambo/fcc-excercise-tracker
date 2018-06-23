@@ -8,7 +8,7 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const server = Hapi.server({
     host: "localhost",
-    port: process.env.PORT || 3030,
+    port: process.env.PORT,
 });
 
 const start = async () => {
