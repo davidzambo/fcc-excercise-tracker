@@ -22,7 +22,6 @@
     "dotenv": "^6.0.0"
   },
   "scripts": {
-    "start": "pm2 start server.js --no-daemon",
-    "stop" : "pm2 stop server.js"
+    "start": "node server.js"
   }
 }
